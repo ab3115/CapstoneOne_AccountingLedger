@@ -72,8 +72,11 @@ public class Main {
     }
 
     public static void ledgerScreen(Scanner scanner){
+        String ledger_screen_input;
 
     }
 
-
+    public static void reportsScreen(Scanner scanner){
+        String reports_screen_input;
+    }
 }
