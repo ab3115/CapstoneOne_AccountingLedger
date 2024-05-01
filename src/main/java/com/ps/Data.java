@@ -13,4 +13,8 @@ public class Data {
         transactionSearchData = new HashMap<>();
     }
 
+    public void addData(Transaction holderInstance){
+        transactionData.add(holderInstance);
+        transactionSearchData.
+    }
 }
