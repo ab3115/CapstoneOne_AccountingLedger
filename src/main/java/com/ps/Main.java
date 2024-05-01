@@ -79,4 +79,10 @@ public class Main {
     public static void reportsScreen(Scanner scanner){
         String reports_screen_input;
     }
+
+    public static void addDeposit(Scanner scanner){
+        System.out.println("Please enter the deposit amount");
+        String temp_deposit_amount = scanner.next();
+
+    }
 }
