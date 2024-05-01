@@ -71,5 +71,9 @@ public class Main {
         }while(!home_screen_input.equals("X"));
     }
 
+    public static void ledgerScreen(Scanner scanner){
+
+    }
+
 
 }
