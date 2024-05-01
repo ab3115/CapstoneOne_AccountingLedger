@@ -12,6 +12,17 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Data myLedger = new Data();
 
+
+
+
+
+
+
+
+
+    }
+
+    public static void buffAndFileReaderMethod(Data myLedger){
         try {
             FileReader fileReader = new FileReader("transactions.csv");
             BufferedReader buffReader = new BufferedReader(fileReader);
@@ -29,9 +40,36 @@ public class Main {
             }
 
         }
-        catch(IOException e){
+        catch(IOException e) {
             e.printStackTrace();
-
         }
     }
+
+    public static void homeScreenMenu(Scanner scanner){
+        String home_screen_input;
+
+        do {
+            System.out.println("Welcome to the Accounting Ledger Application! Please select an option!");
+            System.out.println("\t D");
+            System.out.println("\t P");
+            System.out.println("\t L");
+            System.out.println("\t X");
+            home_screen_input = scanner.next();
+
+            switch (home_screen_input){
+                case("D"):
+                    break;
+                case("P"):
+                    break;
+                case("L"):
+                    break;
+                case("X"):
+                    break;
+                default:
+                    break;
+            }
+        }while(!home_screen_input.equals("X"));
+    }
+
+
 }

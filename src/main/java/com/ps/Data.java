@@ -15,6 +15,5 @@ public class Data {
 
     public void addData(Transaction holderInstance){
         transactionData.add(holderInstance);
-        transactionSearchData.
     }
 }
