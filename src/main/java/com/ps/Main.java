@@ -126,6 +126,7 @@ public class Main {
                 case("P"):
                     break;
                 case("R"):
+
                     break;
             }
 
@@ -135,6 +136,16 @@ public class Main {
 
     public static void reportsScreen(Scanner scanner){
         String reports_screen_input;
+        do{
+            System.out.println("Please select an option");
+            reports_screen_input = scanner.next();
+            System.out.println("Month to Date");
+            System.out.println("Previous Month");
+            System.out.println();
+            System.out.println();
+
+
+        }while(!reports_screen_input.equals("0"));
     }
 
     public static void addDeposit(Scanner scanner, Data myLedger){
