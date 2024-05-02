@@ -61,7 +61,7 @@ public class Main {
 
 
 
-    public static void homeScreenMenu(Scanner scanner){
+    public static void homeScreenMenu(Scanner scanner, Data myLedger){
         String home_screen_input;
 
         do {
@@ -74,8 +74,10 @@ public class Main {
 
             switch (home_screen_input){
                 case("D"):
+                    addDeposit(scanner, myLedger);
                     break;
                 case("P"):
+                    makePayment(scanner, myLedger);
                     break;
                 case("L"):
                     break;
@@ -112,10 +114,20 @@ public class Main {
 
     }
 
-    public static void makePayment(Scanner scanner){
+    public static void makePayment(Scanner scanner, Data myLedger){
         System.out.println("Please enter your debit information");
-        String temp_make_payment = scanner.next();
-        //save to csv
+        System.out.println("\tPlease enter the date of the deposit");
+        String date_temp = scanner.next();
+        System.out.println("\tPlease enter the time of the transaction");
+        String time_temp = scanner.next();
+        System.out.println("\tPlease enter the description");
+        String desc_temp = scanner.next();
+        System.out.println("\tPlease enter the vendor");
+        String vendor_temp = scanner.next();
+        System.out.println("\tPlease enter the amount");
+        float temp_deposit_amount = scanner.nextFloat();
+        fileAndBuffWriter(myLedger, date_temp, time_temp, desc_temp, vendor_temp, temp_deposit_amount);
+
 
     }
 
