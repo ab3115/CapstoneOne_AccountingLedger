@@ -5,6 +5,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.*;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 
 
 public class Main {
@@ -12,6 +14,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         Data myLedger = new Data();
+        homeScreenMenu(scanner);
 
     }
 
@@ -27,9 +30,7 @@ public class Main {
                 String description = tempDataHolder[2];
                 String vendor = tempDataHolder[3];
                 float amount = Float.parseFloat(tempDataHolder[4]);
-                Transaction holderInstance = new Transaction(date, time, description, vendor, amount);
-                myLedger.addData(holderInstance);
-
+                inputToData(myLedger, date,time, description,vendor, amount);
             }
 
         }
@@ -38,8 +39,17 @@ public class Main {
         }
     }
 
-    public static void fileWriter(Data myLedger){
-        try{
+    public static void inputToData(Data myLedger, String date, String time, String description, String vendor, float amount){
+        Transaction holderInstance = new Transaction(date, time, description, vendor, amount);
+        myLedger.addData(holderInstance);
+    }
+
+    public static void fileAndBuffWriter(Data myLedger, String date, String time, String description, String vendor, float amount){
+        try {
+            FileWriter fileWriter = new FileWriter("transactions.csv");
+            BufferedWriter buffWriter = new BufferedWriter(fileWriter);
+            buffWriter.write(date, time, description, vendor,);
+
 
         }catch(Exception e){
 
@@ -86,23 +96,17 @@ public class Main {
     public static void addDeposit(Scanner scanner){
         System.out.println("Please enter the deposit amount");
         String temp_deposit_amount = scanner.next();
-        try{
-            //Buffered Writer
-        }catch(Exception e){
-            //
-        }
 
     }
 
     public static void makePayment(Scanner scanner){
         System.out.println("Please enter your debit information");
         String temp_make_payment = scanner.next();
-       try {
-           //Save to csv file
-       }catch(Exception e){
+        //save to csv
 
-       }
     }
 
-    public static void
+
+
+
 }
