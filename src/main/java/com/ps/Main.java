@@ -96,7 +96,7 @@ public class Main {
         String reports_screen_input;
     }
 
-    public static void addDeposit(Scanner scanner){
+    public static void addDeposit(Scanner scanner, Data myLedger){
         System.out.println("Please enter the deposit information");
         System.out.println("\tPlease enter the date of the deposit");
         String date_temp = scanner.next();
@@ -106,7 +106,9 @@ public class Main {
         String desc_temp = scanner.next();
         System.out.println("\tPlease enter the vendor");
         String vendor_temp = scanner.next();
-        String temp_deposit_amount = scanner.next();
+        System.out.println("\tPlease enter the amount");
+        float temp_deposit_amount = scanner.nextFloat();
+        fileAndBuffWriter(myLedger, date_temp, time_temp, desc_temp, vendor_temp, temp_deposit_amount);
 
     }
 
