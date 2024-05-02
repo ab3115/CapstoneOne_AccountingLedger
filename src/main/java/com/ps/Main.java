@@ -126,7 +126,7 @@ public class Main {
                 case("P"):
                     break;
                 case("R"):
-
+                    reportsScreen(scanner);
                     break;
             }
 
@@ -141,8 +141,9 @@ public class Main {
             reports_screen_input = scanner.next();
             System.out.println("Month to Date");
             System.out.println("Previous Month");
-            System.out.println();
-            System.out.println();
+            System.out.println("Year to Date");
+            System.out.println("Previous Year");
+            System.out.println("Search by Vendor");
 
 
         }while(!reports_screen_input.equals("0"));
