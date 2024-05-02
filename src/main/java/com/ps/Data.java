@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.time.LocalTime;
 import java.time.LocalDate;
+import java.time.Month;
 
 public class Data {
 
     private ArrayList<Transaction> transactionData;
-    private HashMap< String, Transaction> transactionSearchData;
+    private HashMap< String, Transaction> transactionSearchDate;
 
 
     public Data(){
         transactionData = new ArrayList<>();
-        transactionSearchData = new HashMap<>();
+        transactionSearchDate = new HashMap<>();
 
     }
 
     public void addData(Transaction holderInstance) {
-        transactionSearchData.put(holderInstance.getDate(), holderInstance);
+        transactionSearchDate.put(holderInstance.getDate(), holderInstance);
         transactionData.add(holderInstance);
     }
 
@@ -32,8 +33,10 @@ public class Data {
 
     }
 
-    public void monthToDate(){
+    public void monthToDate(Transaction transactionSearchDate){
         LocalDate localDate = LocalDate.now();
+        Month month = localDate.getMonth();
+        for
 
 
 
@@ -47,6 +50,10 @@ public class Data {
     }
 
     public void previousYear(){
+
+    }
+
+    public void searchByVendor(){
 
     }
 
