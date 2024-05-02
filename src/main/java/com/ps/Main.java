@@ -31,6 +31,7 @@ public class Main {
                 String vendor = tempDataHolder[3];
                 float amount = Float.parseFloat(tempDataHolder[4]);
                 inputToData(myLedger, date,time, description,vendor, amount);
+                buffReader.close();
             }
 
         }
@@ -45,12 +46,14 @@ public class Main {
     }
 
     public static void fileAndBuffWriter(Data myLedger, String date, String time, String description, String vendor, float amount){
+
         try {
+
             FileWriter fileWriter = new FileWriter("transactions.csv");
             BufferedWriter buffWriter = new BufferedWriter(fileWriter);
-            buffWriter.write(date, time, description, vendor,);
-
-
+            buffWriter.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
+            inputToData(myLedger, date, time, description, vendor, amount);
+            buffWriter.close();
         }catch(Exception e){
 
         }
@@ -94,7 +97,15 @@ public class Main {
     }
 
     public static void addDeposit(Scanner scanner){
-        System.out.println("Please enter the deposit amount");
+        System.out.println("Please enter the deposit information");
+        System.out.println("\tPlease enter the date of the deposit");
+        String date_temp = scanner.next();
+        System.out.println("\tPlease enter the time of the transaction");
+        String time_temp = scanner.next();
+        System.out.println("\tPlease enter the description");
+        String desc_temp = scanner.next();
+        System.out.println("\tPlease enter the vendor");
+        String vendor_temp = scanner.next();
         String temp_deposit_amount = scanner.next();
 
     }
