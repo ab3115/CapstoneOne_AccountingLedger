@@ -9,16 +9,9 @@ import java.util.regex.*;
 
 public class Main {
     public static void main(String args[]){
+
         Scanner scanner = new Scanner(System.in);
         Data myLedger = new Data();
-
-
-
-
-
-
-
-
 
     }
 
@@ -44,6 +37,8 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+
 
     public static void homeScreenMenu(Scanner scanner){
         String home_screen_input;
@@ -83,6 +78,23 @@ public class Main {
     public static void addDeposit(Scanner scanner){
         System.out.println("Please enter the deposit amount");
         String temp_deposit_amount = scanner.next();
+        try{
+            //Buffered Writer
+        }catch(Exception e){
+            //
+        }
 
     }
+
+    public static void makePayment(Scanner scanner){
+        System.out.println("Please enter your debit information");
+        String temp_make_payment = scanner.next();
+       try {
+           //Save to csv file
+       }catch(Exception e){
+
+       }
+    }
+
+    public static void
 }
