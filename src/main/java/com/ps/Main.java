@@ -38,6 +38,14 @@ public class Main {
         }
     }
 
+    public static void fileWriter(Data myLedger){
+        try{
+
+        }catch(Exception e){
+
+        }
+    }
+
 
 
     public static void homeScreenMenu(Scanner scanner){
