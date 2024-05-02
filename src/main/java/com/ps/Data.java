@@ -31,11 +31,19 @@ public class Data {
     }
 
     public void displayDeposits(){
-
+        for (int i = transactionData.size() - 1; i >= 0; i--){
+            if(transactionData.get(i).getAmount() > 0){
+                System.out.println(transactionData.get(i).toString());
+            }
+        }
     }
 
     public void displayPayments(){
-
+        for (int i = transactionData.size() - 1; i >= 0; i--){
+            if(transactionData.get(i).getAmount() < 0){
+                System.out.println(transactionData.get(i).toString());
+            }
+        }
     }
 
     public void monthToDate() {

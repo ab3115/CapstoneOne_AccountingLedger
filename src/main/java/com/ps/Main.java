@@ -121,12 +121,15 @@ public class Main {
                 myLedger.displayAllEntries();
                     break;
                 case("D"):
-
+                myLedger.displayDeposits();
                     break;
                 case("P"):
+                myLedger.displayPayments();
                     break;
                 case("R"):
-                    reportsScreen(scanner);
+                    reportsScreen(scanner, myLedger);
+                    break;
+                default:
                     break;
             }
 
@@ -134,17 +137,35 @@ public class Main {
 
     }
 
-    public static void reportsScreen(Scanner scanner){
+    public static void reportsScreen(Scanner scanner, Data myLedger){
         String reports_screen_input;
         do{
             System.out.println("Please select an option");
-            reports_screen_input = scanner.next();
             System.out.println("Month to Date");
             System.out.println("Previous Month");
             System.out.println("Year to Date");
             System.out.println("Previous Year");
             System.out.println("Search by Vendor");
-
+            reports_screen_input = scanner.next();
+            switch(reports_screen_input){
+                case("1"):
+                    myLedger.monthToDate();
+                    break;
+                case("2"):
+                    myLedger.previousMonth();
+                    break;
+                case("3"):
+                    myLedger.yearToDate();
+                    break;
+                case("4"):
+                    myLedger.previousYear();
+                    break;
+                case("5"):
+                    myLedger.searchByVendor();
+                    break;
+                default:
+                    break;
+            }
 
         }while(!reports_screen_input.equals("0"));
     }
@@ -152,7 +173,6 @@ public class Main {
     public static void addDeposit(Scanner scanner, Data myLedger){
 
         System.out.println("Please enter the deposit information");
-
         System.out.println("\tPlease enter the description");
         String desc_temp = scanner.next();
         System.out.println("\tPlease enter the vendor");
@@ -173,6 +193,7 @@ public class Main {
         String vendor_temp = scanner.next();
         System.out.println("\tPlease enter the amount");
         float temp_deposit_amount = scanner.nextFloat();
+        temp_deposit_amount = temp_deposit_amount * -1;
         buffAndFileReaderMethod(myLedger);
         fileAndBuffWriter(myLedger, desc_temp, vendor_temp, temp_deposit_amount);
 
