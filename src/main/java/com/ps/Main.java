@@ -14,6 +14,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         Data myLedger = new Data();
+        buffAndFileReaderMethod(myLedger);
         homeScreenMenu(scanner, myLedger);
 
     }
