@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.time.LocalTime;
 import java.time.LocalDate;
-import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 public class Data {
 
     private ArrayList<Transaction> transactionData;
-    private HashMap< String, Transaction> transactionSearchDate;
+    private HashMap<String, Transaction> transactionSearchDate;
 
 
-    public Data(){
+    public Data() {
         transactionData = new ArrayList<>();
         transactionSearchDate = new HashMap<>();
 
@@ -23,25 +24,38 @@ public class Data {
         transactionData.add(holderInstance);
     }
 
-    public void displayAllEntries(ArrayList<Transaction> transactionData){
-        for(int i = transactionData.size() - 1; i  >= 0; i--){
+    public void displayAllEntries() {
+        for (int i = transactionData.size() - 1; i >= 0; i--) {
             System.out.println(transactionData.get(i).toString());
         }
     }
 
-    public void displayDeposits(ArrayList<Transaction> transactionData){
+    public void displayDeposits(ArrayList<Transaction> transactionData) {
 
     }
 
-    public void monthToDate(Transaction transactionSearchDate){
+    public void monthToDate(ArrayList<Transaction> transactionData) {
         LocalDate localDate = LocalDate.now();
-        Month month = localDate.getMonth();
-        for
+        DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MM");
+        String localMonth = localDate.format(monthFormatter);
 
-
+        for(int i = 0; i < transactionData.size(); i++){
+            if(transactionData.get(i).getDate().substring(5,7).equals(localMonth)){
+                System.out.println(transactionData.get(i).toString());
+            }
+        }
 
     }
+
+
+
+
+
+
+
+
     public void previousMonth(){
+
 
     }
 

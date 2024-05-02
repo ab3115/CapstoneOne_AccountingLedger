@@ -97,6 +97,7 @@ public class Main {
                     makePayment(scanner, myLedger);
                     break;
                 case("L"):
+                    ledgerScreen(scanner, myLedger);
                     break;
                 case("X"):
                     break;
@@ -106,7 +107,7 @@ public class Main {
         }while(!home_screen_input.equals("X"));
     }
 
-    public static void ledgerScreen(Scanner scanner){
+    public static void ledgerScreen(Scanner scanner, Data myLedger){
         String ledger_screen_input;
         do{
             System.out.println("Please select an option");
@@ -117,8 +118,10 @@ public class Main {
             ledger_screen_input = scanner.next();
             switch(ledger_screen_input){
                 case("A"):
+                myLedger.displayAllEntries();
                     break;
                 case("D"):
+
                     break;
                 case("P"):
                     break;

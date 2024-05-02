@@ -1,7 +1,7 @@
 package com.ps;
 
-import java.time.LocalTime;
-import java.time.LocalDate;
+
+
 
 public class Transaction {
     private String date;
@@ -60,13 +60,10 @@ public class Transaction {
     }
 
     @Override
+
     public String toString() {
-        return "Transaction{" +
-                "date='" + date + '\'' +
-                ", time='" + time + '\'' +
-                ", description='" + description + '\'' +
-                ", vendor='" + vendor + '\'' +
-                ", amount=" + amount +
-                '}';
+        // Assuming date, time, description, vendor, and amount are instance variables
+        return String.format("%s|%s|%s|%s|%.2f", date, time, description, vendor, amount);
     }
+
 }
