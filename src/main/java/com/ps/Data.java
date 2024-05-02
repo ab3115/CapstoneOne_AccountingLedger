@@ -2,22 +2,23 @@ package com.ps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class Data {
 
     private ArrayList<Transaction> transactionData;
     private HashMap< String, Transaction> transactionSearchData;
-    private HashMap< Integer , Transaction> transactionSearchByAmount;
+
 
     public Data(){
         transactionData = new ArrayList<>();
         transactionSearchData = new HashMap<>();
-        transactionSearchByAmount = new HashMap<>();
+
     }
 
     public void addData(Transaction holderInstance) {
         transactionSearchData.put(holderInstance.getDate(), holderInstance);
-        transactionSearchByAmount.put(holderInstance.getAmount(), holderInstance);
         transactionData.add(holderInstance);
     }
 
@@ -27,7 +28,26 @@ public class Data {
         }
     }
 
-    public static void displayDeposits(ArrayList<Transaction> transactionData){
+    public void displayDeposits(ArrayList<Transaction> transactionData){
 
     }
+
+    public void monthToDate(){
+        LocalDate localDate = LocalDate.now();
+
+
+
+    }
+    public void previousMonth(){
+
+    }
+
+    public void yearToDate(){
+
+    }
+
+    public void previousYear(){
+
+    }
+
 }

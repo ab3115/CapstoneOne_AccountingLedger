@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.regex.*;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
+import java.time.LocalTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class Main {
@@ -14,6 +17,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         Data myLedger = new Data();
+
         buffAndFileReaderMethod(myLedger);
         homeScreenMenu(scanner, myLedger);
 
@@ -28,11 +32,11 @@ public class Main {
             while((line = buffReader.readLine()) != null){
                 String[] tempDataHolder = line.split("\\|");
                 String date = tempDataHolder[0];
-                String time =tempDataHolder[1];
+                String time = tempDataHolder[1];
                 String description = tempDataHolder[2];
                 String vendor = tempDataHolder[3];
                 float amount = Float.parseFloat(tempDataHolder[4]);
-                inputToData(myLedger, date,time, description,vendor, amount);
+                inputToData(myLedger, date, time, description,vendor, amount);
 
             }
 
@@ -51,13 +55,20 @@ public class Main {
 
 
 
-    public static void fileAndBuffWriter(Data myLedger, String date, String time, String description, String vendor, float amount){
+    public static void fileAndBuffWriter(Data myLedger, String description, String vendor, float amount){
 
         try {
+            LocalTime time_1 = LocalTime.now();
+            LocalDate date_1 = LocalDate.now();
+            DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter time_formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String date = date_1.format(date_formatter);
+            String time = time_1.format(time_formatter);
 
             FileWriter fileWriter = new FileWriter("transactions.csv", true);
             BufferedWriter buffWriter = new BufferedWriter(fileWriter);
             buffWriter.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
+
             inputToData(myLedger, date, time, description, vendor, amount);
             buffWriter.close();
         }catch(Exception e){
@@ -126,10 +137,7 @@ public class Main {
     public static void addDeposit(Scanner scanner, Data myLedger){
 
         System.out.println("Please enter the deposit information");
-        System.out.println("\tPlease enter the date of the deposit");
-        String date_temp = scanner.next();
-        System.out.println("\tPlease enter the time of the transaction");
-        String time_temp = scanner.next();
+
         System.out.println("\tPlease enter the description");
         String desc_temp = scanner.next();
         System.out.println("\tPlease enter the vendor");
@@ -137,17 +145,13 @@ public class Main {
         System.out.println("\tPlease enter the amount");
         float temp_deposit_amount = scanner.nextFloat();
         buffAndFileReaderMethod(myLedger);
-        fileAndBuffWriter(myLedger, date_temp, time_temp, desc_temp, vendor_temp, temp_deposit_amount);
+        fileAndBuffWriter(myLedger, desc_temp, vendor_temp, temp_deposit_amount);
 
     }
 
     public static void makePayment(Scanner scanner, Data myLedger){
 
         System.out.println("Please enter your debit information");
-        System.out.println("\tPlease enter the date of the deposit");
-        String date_temp = scanner.next();
-        System.out.println("\tPlease enter the time of the transaction");
-        String time_temp = scanner.next();
         System.out.println("\tPlease enter the description");
         String desc_temp = scanner.next();
         System.out.println("\tPlease enter the vendor");
@@ -155,7 +159,7 @@ public class Main {
         System.out.println("\tPlease enter the amount");
         float temp_deposit_amount = scanner.nextFloat();
         buffAndFileReaderMethod(myLedger);
-        fileAndBuffWriter(myLedger, date_temp, time_temp, desc_temp, vendor_temp, temp_deposit_amount);
+        fileAndBuffWriter(myLedger, desc_temp, vendor_temp, temp_deposit_amount);
 
     }
 
