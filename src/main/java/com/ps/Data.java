@@ -14,15 +14,14 @@ public class Data {
 
 
 
+
+
     public Data() {
-
         transactionData = new ArrayList<>();
-
     }
 
     public void addData(Transaction holderInstance) {
         transactionData.add(holderInstance);
-
     }
 
     public void displayAllEntries() {
@@ -30,6 +29,10 @@ public class Data {
             System.out.println(transactionData.get(i).toString());
         }
     }
+
+
+
+
 
     public void displayDeposits(){
         boolean deposit_found = false;
@@ -44,6 +47,10 @@ public class Data {
         }
     }
 
+
+
+
+
     public void displayPayments(){
         boolean payment_found = false;
         for (int i = transactionData.size() - 1; i >= 0; i--){
@@ -56,6 +63,9 @@ public class Data {
             System.out.println("There are no payments in the CSV file.");
         }
     }
+
+
+
 
     public void monthToDate() {
         boolean foundMtoD = false;
@@ -83,6 +93,8 @@ public class Data {
     }
 
 
+
+
     public void previousMonth() {
         boolean found_previous_month = false;
         LocalDate localDate = LocalDate.now();
@@ -93,6 +105,7 @@ public class Data {
             previous_month = 12;
             current_year--;
         }
+
 
 
         for (int i = 0; i < transactionData.size(); i++) {
@@ -109,6 +122,8 @@ public class Data {
             System.out.println("No records found for the previous month.");
         }
     }
+
+
 
     public void yearToDate(){
         boolean foundYtoD = false;
@@ -134,6 +149,8 @@ public class Data {
         }
 
     }
+
+
 
     public void previousYear(){
         boolean found_previousYear = false;
@@ -171,6 +188,8 @@ public class Data {
 
 
 
+
+
     public void getTotalBalance(){
 
         float total_sum = 0;
@@ -179,6 +198,7 @@ public class Data {
         }
         System.out.println("The total sum of your accounting ledger is: $ " + total_sum);
     }
+
 
 
     public ArrayList<Transaction> getTransactionData() {

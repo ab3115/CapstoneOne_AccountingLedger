@@ -1,7 +1,6 @@
 package com.ps;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,14 +10,13 @@ import java.io.BufferedWriter;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-
-
 
 public class Main {
 
-     static boolean continueFlag = true;
+    static boolean ledgerMenuContinueFlag = true;
+    static boolean reportsMenuContinueFlag = true;
+
+
 
     public static void main(String args[]){
 
@@ -60,10 +58,19 @@ public class Main {
 
 
 
+
+
+
+
     public static void inputToData(Data myLedger, String date, String time, String description, String vendor, float amount){
         Transaction holderInstance = new Transaction(date, time, description, vendor, amount);
         myLedger.addData(holderInstance);
     }
+
+
+
+
+
 
 
 
@@ -91,10 +98,15 @@ public class Main {
 
 
 
+
+
+
+
+
     public static void homeScreenMenu(Scanner scanner, Data myLedger){
         String home_screen_input;
 
-
+            System.out.println("*************************** HOME MENU ***************************");
             System.out.println("Welcome to the Accounting Ledger Application! Please select an option!");
             System.out.println("\t(D)Add Deposit");
             System.out.println("\t(P)Make Payment(Debit)");
@@ -110,8 +122,8 @@ public class Main {
                         makePayment(scanner, myLedger);
                         break;
                     case ("L"):
-                        continueFlag = true;
-                        while(continueFlag == true){
+                        ledgerMenuContinueFlag = true;
+                        while(ledgerMenuContinueFlag == true){
                         ledgerScreen(scanner, myLedger);
                         }
                         break;
@@ -130,10 +142,12 @@ public class Main {
 
     }
 
+
+
     public static void ledgerScreen(Scanner scanner, Data myLedger){
         String ledger_screen_input;
 
-
+            System.out.println("***************************LEDGER MENU ***************************");
             System.out.println("Please select an option");
             System.out.println("\t(A)Display All Entries");
             System.out.println("\t(D)Display only Deposits");
@@ -155,11 +169,14 @@ public class Main {
                     myLedger.displayPayments();
                     break;
                 case("R"):
-                    reportsScreen(scanner, myLedger);
+                    reportsMenuContinueFlag = true;
+                    while(reportsMenuContinueFlag){
+                        reportsScreen(scanner, myLedger);
+                    }
                     break;
                 case("H"):
                     System.out.println("Returning Home...");
-                    continueFlag = false;
+                    ledgerMenuContinueFlag = false;
                     return;
                 default:
                     System.out.println("Please enter a valid input");
@@ -170,12 +187,15 @@ public class Main {
 
     }
 
+
+
+
     public static void reportsScreen(Scanner scanner, Data myLedger){
 
 
         int reports_screen_input;
 
-
+                System.out.println("*************************** REPORTS ***************************");
                 System.out.println("Please select an option");
                 System.out.println("\t(1)Month to Date");
                 System.out.println("\t(2)Previous Month");
@@ -214,18 +234,18 @@ public class Main {
                         break;
                     case (0):
                         System.out.println("Returning Home...");
-                        break;
+                        reportsMenuContinueFlag = false;
+                        return;
                     default:
                         System.out.println("Please enter a valid input report");
                         break;
                 }
-
-
-
-
-
-
     }
+
+
+
+
+
 
     public static void customSearchMenu(Scanner scanner, Data myLedger){
 
@@ -262,9 +282,10 @@ public class Main {
         for(int i = 0; i < tempList.size(); i++){
             System.out.println(tempList.get(i));
         }
-
-
     }
+
+
+
 
 
     public static void searchVendorScreen(Scanner scanner, Data myLedger){
@@ -272,6 +293,9 @@ public class Main {
         String vendor_temp = scanner.next();
         myLedger.searchByVendor(vendor_temp);
     }
+
+
+
 
 
 
@@ -285,8 +309,11 @@ public class Main {
         System.out.println("\tPlease enter the amount:");
         float temp_deposit_amount = scanner.nextFloat();
         fileAndBuffWriter(myLedger, desc_temp, vendor_temp, temp_deposit_amount);
-
     }
+
+
+
+
 
     public static void makePayment(Scanner scanner, Data myLedger){
 

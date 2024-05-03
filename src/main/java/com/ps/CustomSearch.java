@@ -11,6 +11,9 @@ public class CustomSearch {
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
 
+
+
+
     public static ArrayList<Transaction> searchStartDate(ArrayList<Transaction> transactionData, String startDate) {
         ArrayList<Transaction> filteredList = new ArrayList<>();
         DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
@@ -23,6 +26,9 @@ public class CustomSearch {
         }
         return filteredList;
     }
+
+
+
 
     public static ArrayList<Transaction> searchEndDate(ArrayList<Transaction> transactionData, String endDate) {
         ArrayList<Transaction> filteredList = new ArrayList<>();
@@ -38,6 +44,10 @@ public class CustomSearch {
         return filteredList;
     }
 
+
+
+
+
         public static ArrayList<Transaction> searchVendor(ArrayList < Transaction > transactionData, String vendor){
             ArrayList<Transaction> filteredList = new ArrayList<>();
             for (int i = 0; i < transactionData.size(); i++) {
@@ -48,6 +58,10 @@ public class CustomSearch {
             return filteredList;
         }
 
+
+
+
+
         public static ArrayList<Transaction> searchDescription (ArrayList < Transaction > transactionData, String description){
             ArrayList<Transaction> filteredList = new ArrayList<>();
             for(int i = 0; i < transactionData.size(); i++) {
@@ -57,6 +71,9 @@ public class CustomSearch {
             }
             return filteredList;
         }
+
+
+
 
         public static ArrayList<Transaction> searchAmount(ArrayList < Transaction > transactionData,float amount){
 
