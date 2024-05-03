@@ -10,8 +10,8 @@
 2012-11-20|13:15:15|Car rental|Rental Agency|-150.00
 2011-07-14|15:50:50|Grocery shopping|Local Market|-70.00
 2010-05-27|09:35:35|Travel expenses|Train Tickets|-200.00
-2009-03-18|11:20:20|Insurance premium payment|Insurance Company|-250.00
-2008-01-03|14:45:45|Home cleaning services|Cleaning Company|-100.00
+2009-03-18|11:20:20|Insurance premium payment|Insurance Company|250.00
+2008-01-03|14:45:45|Home cleaning services|Cleaning Company|100.00
 2007-10-15|16:30:30|Restaurant bill|Italian Restaurant|-60.00
 2006-08-28|10:05:05|Online shopping|E-commerce Store|-120.00
 2005-06-10|12:40:40|Gift purchase|Gift Shop|-25.00
@@ -21,7 +21,7 @@
 2001-09-08|15:25:25|Subscription renewal|Streaming Service|-15.99
 2000-07-21|17:10:10|Pet supplies|Pet Store|-50.00
 1999-05-03|08:30:30|Electrician services|Electrician|-120.00
-1998-03-15|12:05:05|Mobile phone bill payment|Telecom Company|-60.00
+1998-03-15|12:05:05|Mobile phone bill payment|Telecom Company|60.00
 1997-01-27|14:40:40|Fitness class membership|Gym|-80.00
 1996-11-08|16:15:15|Book purchase|Bookstore|-20.00
 1995-09-20|10:50:50|Vehicle registration renewal|DMV|-150.00
@@ -30,3 +30,5 @@
 1992-02-26|09:45:45|Home appliance repair|Appliance Repair Service|-150.00
 1991-12-08|11:30:30|Healthcare expenses|Pharmacy|-70.00
 1990-09-21|14:05:05|Travel expenses|Airline Tickets|-500.00
+2024-05-03|05:05:45|toy|amazon|99.09
+2024-05-03|05:20:00|home|amazon|-99.04

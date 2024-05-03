@@ -41,17 +41,19 @@ public class CustomSearch {
         public static ArrayList<Transaction> searchVendor(ArrayList < Transaction > transactionData, String vendor){
             ArrayList<Transaction> filteredList = new ArrayList<>();
             for (int i = 0; i < transactionData.size(); i++) {
-                if (transactionData.get(i).getVendor().equals(vendor)) ;
-                filteredList.add(transactionData.get(i));
+                if (transactionData.get(i).getVendor().toLowerCase().contains(vendor.toLowerCase())) {
+                    filteredList.add(transactionData.get(i));
+                }
             }
             return filteredList;
         }
 
         public static ArrayList<Transaction> searchDescription (ArrayList < Transaction > transactionData, String description){
             ArrayList<Transaction> filteredList = new ArrayList<>();
-            for (int i = 0; i < transactionData.size(); i++) {
-                if (transactionData.get(i).getDescription().equals(description)) ;
-                filteredList.add(transactionData.get(i));
+            for(int i = 0; i < transactionData.size(); i++) {
+                if (transactionData.get(i).getDescription().toLowerCase().contains(description.toLowerCase())) {
+                    filteredList.add(transactionData.get(i));
+                }
             }
             return filteredList;
         }
@@ -60,8 +62,9 @@ public class CustomSearch {
 
             ArrayList<Transaction> filteredList = new ArrayList<>();
             for (int i = 0; i < transactionData.size(); i++) {
-                if (transactionData.get(i).getAmount() == amount);
-                filteredList.add(transactionData.get(i));
+                if (transactionData.get(i).getAmount() >= amount) {
+                    filteredList.add(transactionData.get(i));
+                }
             }
             return filteredList;
         }

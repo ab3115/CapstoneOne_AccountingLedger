@@ -1,6 +1,7 @@
 package com.ps;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -133,19 +134,21 @@ public class Main {
                     myLedger.displayAllEntries();
                     break;
                 case("D"):
+                    System.out.println("All Deposits:");
                     myLedger.displayDeposits();
                     break;
                 case("P"):
+                    System.out.println("All Payments");
                     myLedger.displayPayments();
                     break;
                 case("R"):
                     reportsScreen(scanner, myLedger);
                     break;
                 case("H"):
-                    System.out.println("Returning Home");
+                    System.out.println("Returning Home...");
                     return;
                 default:
-                    System.out.println("Please enter a valid input LEDGER");
+                    System.out.println("Please enter a valid input");
                     return;
             }
 
@@ -154,9 +157,9 @@ public class Main {
     }
 
     public static void reportsScreen(Scanner scanner, Data myLedger){
+
+
         int reports_screen_input;
-
-
 
 
                 System.out.println("Please select an option");
@@ -196,10 +199,10 @@ public class Main {
                         customSearchMenu(scanner, myLedger);
                         break;
                     case (0):
-                        System.out.println("Returning Home");
+                        System.out.println("Returning Home...");
                         break;
                     default:
-                        System.out.println("Please enter a valid input reportScreen");
+                        System.out.println("Please enter a valid input report");
                         break;
                 }
 
@@ -218,9 +221,8 @@ public class Main {
         System.out.println("Please enter your filters");
         System.out.println("Start Date (yyyy-MM-dd)");
         String startDate = scanner.nextLine();
-
         if(!startDate.isBlank()){
-            tempList = CustomSearch.searchStartDate(tempList, startDate);
+            ArrayList<Transaction> startDateList = CustomSearch.searchStartDate(tempList, startDate);
         }
         System.out.println("End Date (yyyy-MM-dd)");
         String endDate = scanner.nextLine();
@@ -262,9 +264,9 @@ public class Main {
     public static void addDeposit(Scanner scanner, Data myLedger){
 
         System.out.println("Please enter the deposit information:");
-        System.out.println("\tPlease enter the description:");
+        System.out.println("\tPlease enter the description of your deposit:");
         String desc_temp = scanner.next();
-        System.out.println("\tPlease enter the vendor:");
+        System.out.println("\tPlease enter the vendor information:");
         String vendor_temp = scanner.next();
         System.out.println("\tPlease enter the amount:");
         float temp_deposit_amount = scanner.nextFloat();
