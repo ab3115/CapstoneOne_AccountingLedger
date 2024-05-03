@@ -89,9 +89,7 @@ public class Main {
             System.out.println("\t(P)Make Payment(Debit)");
             System.out.println("\t(L)Ledger");
             System.out.println("\t(X)Exit");
-            home_screen_input = scanner.next();
-
-
+            home_screen_input = scanner.next().toUpperCase();
 
                 switch (home_screen_input) {
                     case ("D"):
@@ -104,6 +102,7 @@ public class Main {
                         ledgerScreen(scanner, myLedger);
                         break;
                     case ("X"):
+                        System.out.println("Closing application");
                         break;
                     default:
                         System.out.println("Please enter a valid input");
@@ -118,6 +117,7 @@ public class Main {
 
     public static void ledgerScreen(Scanner scanner, Data myLedger){
         String ledger_screen_input;
+
         do{
             System.out.println("Please select an option");
             System.out.println("\t(A)Display All Entries");
@@ -125,7 +125,8 @@ public class Main {
             System.out.println("\t(P)Display only Payments");
             System.out.println("\t(R)Reports");
             System.out.println("\t(H)Home");
-            ledger_screen_input = scanner.next();
+            ledger_screen_input = scanner.next().toUpperCase();
+
             switch(ledger_screen_input){
                 case("A"):
                 myLedger.displayAllEntries();
@@ -163,32 +164,36 @@ public class Main {
             System.out.println("(6)Custom Search");
             System.out.println("(0)Exit");
             reports_screen_input = scanner.nextInt();
-            switch(reports_screen_input){
-                case(1):
+            try{
+
+            switch(reports_screen_input) {
+                case (1):
                     myLedger.monthToDate();
                     break;
-                case(2):
+                case (2):
                     myLedger.previousMonth();
                     break;
-                case(3):
+                case (3):
                     myLedger.yearToDate();
                     break;
-                case(4):
+                case (4):
                     myLedger.previousYear();
                     break;
-                case(5):
-
+                case (5):
                     searchVendorScreen(scanner, myLedger);
                     break;
-                case(6):
+                case (6):
                     customSearchScreen(scanner, myLedger);
                     break;
-                case(0):
+                case (0):
                     System.out.println("Returning Home");
                     break;
                 default:
                     System.out.println("Please enter a valid input");
                     break;
+            }
+            }catch(Exception e){
+                System.out.println("Please enter valid input choice");
             }
 
         }while(!(reports_screen_input == 0));

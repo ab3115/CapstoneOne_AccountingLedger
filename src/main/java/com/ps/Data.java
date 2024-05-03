@@ -10,19 +10,19 @@ import java.time.format.DateTimeFormatter;
 public class Data {
 
     private ArrayList<Transaction> transactionData;
-    private HashMap<String, Transaction> transactionSearchDate;
-    private ArrayList<Transaction> searchHistory;
+
+
 
 
     public Data() {
         transactionData = new ArrayList<>();
-        transactionSearchDate = new HashMap<>();
-        searchHistory = new ArrayList<>();
+
+
 
     }
 
     public void addData(Transaction holderInstance) {
-        transactionSearchDate.put(holderInstance.getDate(), holderInstance);
+
         transactionData.add(holderInstance);
     }
 
@@ -33,42 +33,59 @@ public class Data {
     }
 
     public void displayDeposits(){
+        boolean deposit_found = false;
         for (int i = transactionData.size() - 1; i >= 0; i--){
             if(transactionData.get(i).getAmount() > 0){
                 System.out.println(transactionData.get(i).toString());
+                deposit_found = true;
             }
+        }
+        if(!deposit_found){
+            System.out.println("There are no deposits in the CSV file.");
         }
     }
 
     public void displayPayments(){
+        boolean payment_found = false;
         for (int i = transactionData.size() - 1; i >= 0; i--){
             if(transactionData.get(i).getAmount() < 0){
                 System.out.println(transactionData.get(i).toString());
+                payment_found = true;
             }
+        }
+        if(!payment_found){
+            System.out.println("There are no payments in the CSV file.");
         }
     }
 
     public void monthToDate() {
+        boolean foundMtoD = false;
         LocalDate localDate = LocalDate.now();
         int current_month = localDate.getMonthValue();
         int current_year = localDate.getYear();
-        int current_day = localDate.getDayOfMonth();
+
 
 
         for(int i = 0; i < transactionData.size(); i++){
             int instance_month = Integer.parseInt(transactionData.get(i).getDate().substring(5, 7));
             int instance_year = Integer.parseInt(transactionData.get(i).getDate().substring(0, 4));
-            int instance_day = Integer.parseInt(transactionData.get(i).getDate().substring(8, 10));
-            if(instance_month == current_month && instance_year == current_year && instance_day <= current_day){
+
+            if(instance_month == current_month && instance_year == current_year){
                 System.out.println(transactionData.get(i).toString());
+                foundMtoD = true;
             }
 
+        }
+
+        if(!foundMtoD){
+            System.out.println("No records found since beginning of this month.");
         }
 
     }
 
 
     public void previousMonth() {
+        boolean found_previous_month = false;
         LocalDate localDate = LocalDate.now();
         int current_month = localDate.getMonthValue();
         int current_year = localDate.getYear();
@@ -85,12 +102,17 @@ public class Data {
 
             if ((instance_month == previous_month) && (instance_year == current_year)) {
                 System.out.println(transactionData.get(i).toString());
+                found_previous_month = true;
             }
 
+        }
+        if(!found_previous_month){
+            System.out.println("No records found for the previous month.");
         }
     }
 
     public void yearToDate(){
+        boolean foundYtoD = false;
         LocalDate localDate = LocalDate.now();
         int current_month = localDate.getMonthValue();
         int current_year = localDate.getYear();
@@ -104,46 +126,57 @@ public class Data {
             if((instance_year == current_year && instance_month == current_month && instance_day <= current_day) ||
                     (instance_year == current_year && current_month > instance_month)){
                 System.out.println(transactionData.get(i).toString());
+                foundYtoD = true;
             }
 
+        }
+        if(!foundYtoD){
+            System.out.println("No records found since the beginning of this year");
         }
 
     }
 
     public void previousYear(){
+        boolean found_previousYear = false;
         LocalDate localDate = LocalDate.now();
-        int current_month = localDate.getMonthValue();
         int current_year = localDate.getYear();
         int previous_year = current_year - 1;
+
         for(int i = 0; i < transactionData.size(); i++){
             int instance_year = Integer.parseInt(transactionData.get(i).getDate().substring(0, 4));
             if(instance_year == previous_year){
                 System.out.println(transactionData.get(i).toString());
+                found_previousYear = true;
             }
+        }
+
+        if(!found_previousYear){
+            System.out.println("No records found of the previous year");
         }
 
     }
 
     public void searchByVendor(String vendor){
+        boolean vendorFound = false;
+
         for(int i = 0; i < transactionData.size(); i++){
             if(vendor.equals(transactionData.get(i).getVendor())){
                 System.out.println(transactionData.get(i).toString());
+                vendorFound = true;
             }
+        }
+        if(!vendorFound){
+            System.out.println("The vendor you searched for was not found");
         }
     }
 
     public void customSearch(String startDate, String endDate, String Description, String vendor, float amount){
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        if(!startDate.equals("")){
-            int start_date_year = Integer.parseInt(startDate.substring(0,4));
-            int start_date_month = Integer.parseInt(startDate.substring(5, 7));
-            int start_date_day = Integer.parseInt(startDate.substring(8));
-
-        }else{
 
 
-        }
+        for (int i = 0; i < transactionData.size(); i++);
+
     }
 
 }
