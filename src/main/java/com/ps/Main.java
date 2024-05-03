@@ -32,6 +32,9 @@ public class Main {
 
     }
 
+
+
+
     public static void buffAndFileReaderMethod(Data myLedger){
 
         try {
@@ -232,7 +235,7 @@ public class Main {
         System.out.println("Start Date (yyyy-MM-dd)");
         String startDate = scanner.nextLine();
         if(!startDate.isBlank()){
-            ArrayList<Transaction> startDateList = CustomSearch.searchStartDate(tempList, startDate);
+            tempList = CustomSearch.searchStartDate(tempList, startDate);
         }
         System.out.println("End Date (yyyy-MM-dd)");
         String endDate = scanner.nextLine();
