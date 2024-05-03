@@ -11,11 +11,13 @@ public class Data {
 
     private ArrayList<Transaction> transactionData;
     private HashMap<String, Transaction> transactionSearchDate;
+    private ArrayList<Transaction> searchHistory;
 
 
     public Data() {
         transactionData = new ArrayList<>();
         transactionSearchDate = new HashMap<>();
+        searchHistory = new ArrayList<>();
 
     }
 
@@ -122,6 +124,17 @@ public class Data {
 
     public void searchByVendor(){
 
+    }
+
+    public void customSearch(String startDate, String endDate, String Description, String vendor, float amount){
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        if(startDate.equals("")){
+
+        }else{
+
+
+        }
     }
 
 }

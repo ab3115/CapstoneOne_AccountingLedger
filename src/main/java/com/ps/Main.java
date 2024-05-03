@@ -4,12 +4,12 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.regex.*;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 
 public class Main {
@@ -67,6 +67,7 @@ public class Main {
 
             FileWriter fileWriter = new FileWriter("transactions.csv", true);
             BufferedWriter buffWriter = new BufferedWriter(fileWriter);
+            buffWriter.newLine();
             buffWriter.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
 
             inputToData(myLedger, date, time, description, vendor, amount);
@@ -83,10 +84,10 @@ public class Main {
 
         do {
             System.out.println("Welcome to the Accounting Ledger Application! Please select an option!");
-            System.out.println("\t D");
-            System.out.println("\t P");
-            System.out.println("\t L");
-            System.out.println("\t X");
+            System.out.println("\t(D)Add Deposit");
+            System.out.println("\t(P)Make Payment(Debit)");
+            System.out.println("\t(L)Ledger");
+            System.out.println("\t(X)Exit");
             home_screen_input = scanner.next();
 
             switch (home_screen_input){
@@ -111,10 +112,11 @@ public class Main {
         String ledger_screen_input;
         do{
             System.out.println("Please select an option");
-            System.out.println("\tAll");
-            System.out.println("\tDeposits");
-            System.out.println("\tPayments");
-            System.out.println("\tReports");
+            System.out.println("\t(A)Display All Entries");
+            System.out.println("\t(D)Display only Deposits");
+            System.out.println("\t(P)Display only Payments");
+            System.out.println("\t(R)Reports");
+            System.out.println("\t(H)Home");
             ledger_screen_input = scanner.next();
             switch(ledger_screen_input){
                 case("A"):
@@ -129,6 +131,9 @@ public class Main {
                 case("R"):
                     reportsScreen(scanner, myLedger);
                     break;
+                case("H"):
+                    System.out.println("Returning Home");
+                    break;
                 default:
                     break;
             }
@@ -141,11 +146,12 @@ public class Main {
         String reports_screen_input;
         do{
             System.out.println("Please select an option");
-            System.out.println("Month to Date");
-            System.out.println("Previous Month");
-            System.out.println("Year to Date");
-            System.out.println("Previous Year");
-            System.out.println("Search by Vendor");
+            System.out.println("(1)Month to Date");
+            System.out.println("(2)Previous Month");
+            System.out.println("(3)Year to Date");
+            System.out.println("(4)Previous Year");
+            System.out.println("(5)Search by Vendor");
+            System.out.println("(6)Custom Search");
             reports_screen_input = scanner.next();
             switch(reports_screen_input){
                 case("1"):
@@ -161,7 +167,11 @@ public class Main {
                     myLedger.previousYear();
                     break;
                 case("5"):
+
                     myLedger.searchByVendor();
+                    break;
+                case("6"):
+                    customSearchScreen(scanner, myLedger);
                     break;
                 default:
                     break;
@@ -169,6 +179,31 @@ public class Main {
 
         }while(!reports_screen_input.equals("0"));
     }
+
+    public static void customSearchScreen(Scanner scanner, Data myLedger){
+
+
+
+            System.out.println("Please enter the data for which field you'd like to edit your search for");
+            System.out.println("\tPlease enter the Start Date (yyyy-MM-dd)");
+            String temp_startDate = "";
+            temp_startDate = scanner.next();
+
+            System.out.println("\tPlease Enter the End Date (yyyy-MM-dd)");
+            String temp_endDate = "";
+            temp_endDate = scanner.next();
+
+            System.out.println("\tPlease enter the Description of the Transaction");
+            String temp_descripton = scanner.next();
+            System.out.println("\tPlease enter the Vendor name");
+            String temp_vendor = scanner.next();
+            System.out.println("\tAmount");
+            float temp_amount = scanner.nextFloat();
+            myLedger.customSearch(temp_startDate, temp_endDate, temp_descripton, temp_vendor, temp_amount);
+
+
+    }
+
 
     public static void addDeposit(Scanner scanner, Data myLedger){
 
@@ -179,7 +214,6 @@ public class Main {
         String vendor_temp = scanner.next();
         System.out.println("\tPlease enter the amount");
         float temp_deposit_amount = scanner.nextFloat();
-        buffAndFileReaderMethod(myLedger);
         fileAndBuffWriter(myLedger, desc_temp, vendor_temp, temp_deposit_amount);
 
     }
@@ -194,7 +228,6 @@ public class Main {
         System.out.println("\tPlease enter the amount");
         float temp_deposit_amount = scanner.nextFloat();
         temp_deposit_amount = temp_deposit_amount * -1;
-        buffAndFileReaderMethod(myLedger);
         fileAndBuffWriter(myLedger, desc_temp, vendor_temp, temp_deposit_amount);
 
     }
