@@ -110,6 +110,7 @@ public class Main {
                         makePayment(scanner, myLedger);
                         break;
                     case ("L"):
+                        continueFlag = true;
                         while(continueFlag == true){
                         ledgerScreen(scanner, myLedger);
                         }
@@ -176,14 +177,14 @@ public class Main {
 
 
                 System.out.println("Please select an option");
-                System.out.println("(1)Month to Date");
-                System.out.println("(2)Previous Month");
-                System.out.println("(3)Year to Date");
-                System.out.println("(4)Previous Year");
-                System.out.println("(5)Search by Vendor");
-                System.out.println("(6)Get Total Balance");
-                System.out.println("(7)Custom Search Menu");
-                System.out.println("(0)Exit");
+                System.out.println("\t(1)Month to Date");
+                System.out.println("\t(2)Previous Month");
+                System.out.println("\t(3)Year to Date");
+                System.out.println("\t(4)Previous Year");
+                System.out.println("\t(5)Search by Vendor");
+                System.out.println("\t(6)Get Total Balance");
+                System.out.println("\t(7)Custom Search Menu");
+                System.out.println("\t(0)Exit");
 
 
                 reports_screen_input = scanner.nextInt();

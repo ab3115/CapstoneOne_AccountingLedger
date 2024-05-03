@@ -8,6 +8,6 @@
 
 ![output.png](output.png)
 
-### I thought this part was interesting since I wanted to be specific and utilize substrings.
+### I thought this part was interesting since it took me the longest while figuring out how to efficiently implement the methods without having to dissect each initial input through nested if-statements.
 
-![Interesting.png](Interesting.png)
+![RealyInteresting.png](RealyInteresting.png)
