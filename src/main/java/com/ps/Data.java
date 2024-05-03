@@ -170,13 +170,15 @@ public class Data {
         }
     }
 
-    public void customSearch(String startDate, String endDate, String Description, String vendor, float amount){
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 
+    public void getTotalBalance(){
 
-        for (int i = 0; i < transactionData.size(); i++);
-
+        float total_sum = 0;
+        for(int i = 0; i < transactionData.size(); i++){
+            total_sum += transactionData.get(i).getAmount();
+        }
+        System.out.println("The total sum of your accounting ledger is: $ " + total_sum);
     }
 
 }
