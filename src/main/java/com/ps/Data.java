@@ -99,8 +99,10 @@ public class Data {
         for(int i = 0; i < transactionData.size(); i++){
             int instance_month = Integer.parseInt(transactionData.get(i).getDate().substring(5, 7));
             int instance_year = Integer.parseInt(transactionData.get(i).getDate().substring(0, 4));
-            int instance_day = Integer.parseInt(transactionData.get(i).getDate().substring(8, 10));
-            if(instance_year == current_year && instance_month<= current_month && instance_day <= current_day){
+            int instance_day = Integer.parseInt(transactionData.get(i).getDate().substring(8));
+
+            if((instance_year == current_year && instance_month == current_month && instance_day <= current_day) ||
+                    (instance_year == current_year && current_month > instance_month)){
                 System.out.println(transactionData.get(i).toString());
             }
 
@@ -122,14 +124,21 @@ public class Data {
 
     }
 
-    public void searchByVendor(){
-
+    public void searchByVendor(String vendor){
+        for(int i = 0; i < transactionData.size(); i++){
+            if(vendor.equals(transactionData.get(i).getVendor())){
+                System.out.println(transactionData.get(i).toString());
+            }
+        }
     }
 
     public void customSearch(String startDate, String endDate, String Description, String vendor, float amount){
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        if(startDate.equals("")){
+        if(!startDate.equals("")){
+            int start_date_year = Integer.parseInt(startDate.substring(0,4));
+            int start_date_month = Integer.parseInt(startDate.substring(5, 7));
+            int start_date_day = Integer.parseInt(startDate.substring(8));
 
         }else{
 

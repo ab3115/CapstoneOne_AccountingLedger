@@ -83,6 +83,7 @@ public class Main {
         String home_screen_input;
 
         do {
+
             System.out.println("Welcome to the Accounting Ledger Application! Please select an option!");
             System.out.println("\t(D)Add Deposit");
             System.out.println("\t(P)Make Payment(Debit)");
@@ -90,21 +91,28 @@ public class Main {
             System.out.println("\t(X)Exit");
             home_screen_input = scanner.next();
 
-            switch (home_screen_input){
-                case("D"):
-                    addDeposit(scanner, myLedger);
-                    break;
-                case("P"):
-                    makePayment(scanner, myLedger);
-                    break;
-                case("L"):
-                    ledgerScreen(scanner, myLedger);
-                    break;
-                case("X"):
-                    break;
-                default:
-                    break;
-            }
+
+
+                switch (home_screen_input) {
+                    case ("D"):
+                        addDeposit(scanner, myLedger);
+                        break;
+                    case ("P"):
+                        makePayment(scanner, myLedger);
+                        break;
+                    case ("L"):
+                        ledgerScreen(scanner, myLedger);
+                        break;
+                    case ("X"):
+                        break;
+                    default:
+                        System.out.println("Please enter a valid input");
+                        break;
+                }
+
+
+
+
         }while(!home_screen_input.equals("X"));
     }
 
@@ -135,6 +143,7 @@ public class Main {
                     System.out.println("Returning Home");
                     break;
                 default:
+                    System.out.println("Please enter a valid input");
                     break;
             }
 
@@ -143,7 +152,7 @@ public class Main {
     }
 
     public static void reportsScreen(Scanner scanner, Data myLedger){
-        String reports_screen_input;
+        int reports_screen_input;
         do{
             System.out.println("Please select an option");
             System.out.println("(1)Month to Date");
@@ -152,32 +161,44 @@ public class Main {
             System.out.println("(4)Previous Year");
             System.out.println("(5)Search by Vendor");
             System.out.println("(6)Custom Search");
-            reports_screen_input = scanner.next();
+            System.out.println("(0)Exit");
+            reports_screen_input = scanner.nextInt();
             switch(reports_screen_input){
-                case("1"):
+                case(1):
                     myLedger.monthToDate();
                     break;
-                case("2"):
+                case(2):
                     myLedger.previousMonth();
                     break;
-                case("3"):
+                case(3):
                     myLedger.yearToDate();
                     break;
-                case("4"):
+                case(4):
                     myLedger.previousYear();
                     break;
-                case("5"):
+                case(5):
 
-                    myLedger.searchByVendor();
+                    searchVendorScreen(scanner, myLedger);
                     break;
-                case("6"):
+                case(6):
                     customSearchScreen(scanner, myLedger);
                     break;
+                case(0):
+                    System.out.println("Returning Home");
+                    break;
                 default:
+                    System.out.println("Please enter a valid input");
                     break;
             }
 
-        }while(!reports_screen_input.equals("0"));
+        }while(!(reports_screen_input == 0));
+    }
+
+
+    public static void searchVendorScreen(Scanner scanner, Data myLedger){
+        System.out.println("Please enter the Vendor you'd like to search for");
+        String vendor_temp = scanner.next();
+        myLedger.searchByVendor(vendor_temp);
     }
 
     public static void customSearchScreen(Scanner scanner, Data myLedger){
