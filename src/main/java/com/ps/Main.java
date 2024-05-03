@@ -1,5 +1,6 @@
 package com.ps;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -82,7 +83,7 @@ public class Main {
     public static void homeScreenMenu(Scanner scanner, Data myLedger){
         String home_screen_input;
 
-        do {
+
 
             System.out.println("Welcome to the Accounting Ledger Application! Please select an option!");
             System.out.println("\t(D)Add Deposit");
@@ -103,22 +104,22 @@ public class Main {
                         break;
                     case ("X"):
                         System.out.println("Closing application");
-                        break;
+                        System.exit(0);
                     default:
-                        System.out.println("Please enter a valid input");
-                        break;
+                        System.out.println("Please enter a valid input HOME");
+                        return;
                 }
 
 
 
 
-        }while(!home_screen_input.equals("X"));
+
     }
 
     public static void ledgerScreen(Scanner scanner, Data myLedger){
         String ledger_screen_input;
 
-        do{
+
             System.out.println("Please select an option");
             System.out.println("\t(A)Display All Entries");
             System.out.println("\t(D)Display only Deposits");
@@ -129,35 +130,35 @@ public class Main {
 
             switch(ledger_screen_input){
                 case("A"):
-                myLedger.displayAllEntries();
+                    myLedger.displayAllEntries();
                     break;
                 case("D"):
-                myLedger.displayDeposits();
+                    myLedger.displayDeposits();
                     break;
                 case("P"):
-                myLedger.displayPayments();
+                    myLedger.displayPayments();
                     break;
                 case("R"):
                     reportsScreen(scanner, myLedger);
                     break;
                 case("H"):
                     System.out.println("Returning Home");
-                    break;
+                    return;
                 default:
-                    System.out.println("Please enter a valid input");
-                    break;
+                    System.out.println("Please enter a valid input LEDGER");
+                    return;
             }
 
-        }while(!ledger_screen_input.equals("H"));
+
 
     }
 
     public static void reportsScreen(Scanner scanner, Data myLedger){
         int reports_screen_input;
 
-        try {
 
-            do {
+
+
                 System.out.println("Please select an option");
                 System.out.println("(1)Month to Date");
                 System.out.println("(2)Previous Month");
@@ -165,6 +166,7 @@ public class Main {
                 System.out.println("(4)Previous Year");
                 System.out.println("(5)Search by Vendor");
                 System.out.println("(6)Get Total Balance");
+                System.out.println("(7)Custom Search Menu");
                 System.out.println("(0)Exit");
 
 
@@ -190,20 +192,62 @@ public class Main {
                     case (6):
                         myLedger.getTotalBalance();
                         break;
+                    case(7):
+                        customSearchMenu(scanner, myLedger);
+                        break;
                     case (0):
                         System.out.println("Returning Home");
                         break;
                     default:
-                        System.out.println("Please enter a valid input");
+                        System.out.println("Please enter a valid input reportScreen");
                         break;
                 }
 
 
-            } while (!(reports_screen_input == 0));
-        }catch(Exception e){
-            System.out.println("Please enter a valid input");
 
+
+
+
+    }
+
+    public static void customSearchMenu(Scanner scanner, Data myLedger){
+
+        ArrayList<Transaction> tempList = new ArrayList<>(myLedger.getTransactionData());
+
+        scanner.nextLine();
+        System.out.println("Please enter your filters");
+        System.out.println("Start Date (yyyy-MM-dd)");
+        String startDate = scanner.nextLine();
+
+        if(!startDate.isBlank()){
+            tempList = CustomSearch.searchStartDate(tempList, startDate);
         }
+        System.out.println("End Date (yyyy-MM-dd)");
+        String endDate = scanner.nextLine();
+        if(!endDate.isBlank()){
+            tempList = CustomSearch.searchEndDate(tempList, endDate);
+        }
+        System.out.println("Description Info");
+        String descInfo = scanner.nextLine();
+        if(!descInfo.isBlank()){
+            tempList = CustomSearch.searchDescription(tempList, descInfo);
+        }
+        System.out.println("Vendor Info");
+        String vendor_info = scanner.nextLine();
+        if(!vendor_info.isBlank()){
+            tempList = CustomSearch.searchVendor(tempList, vendor_info);
+        }
+        System.out.println("Amount Info");
+        String amount_info = scanner.nextLine();
+        if(!amount_info.isBlank()){
+            float temp_amount = Float.parseFloat(amount_info);
+            tempList = CustomSearch.searchAmount(tempList, temp_amount);
+        }
+        for(int i = 0; i < tempList.size(); i++){
+            System.out.println(tempList.get(i));
+        }
+
+
     }
 
 

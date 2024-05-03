@@ -10,14 +10,13 @@ import java.time.format.DateTimeFormatter;
 public class Data {
 
     private ArrayList<Transaction> transactionData;
-
+    CustomSearch searchClass = new CustomSearch();
 
 
 
     public Data() {
+
         transactionData = new ArrayList<>();
-
-
 
     }
 
@@ -181,4 +180,21 @@ public class Data {
         System.out.println("The total sum of your accounting ledger is: $ " + total_sum);
     }
 
+    public void customSearch(String startDate, String endDate, String description, String vendor, float amount){
+
+        String startDateString = startDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate start_Date = LocalDate.parse(startDateString, formatter);
+        String endDateString = endDate;
+        LocalDate end_Date = LocalDate.parse(endDateString, formatter);
+
+        for(int i = 0; i < transactionData.size(); i++){
+
+        }
+
+    }
+
+    public ArrayList<Transaction> getTransactionData() {
+        return transactionData;
+    }
 }
