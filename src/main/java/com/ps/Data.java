@@ -21,8 +21,8 @@ public class Data {
     }
 
     public void addData(Transaction holderInstance) {
-
         transactionData.add(holderInstance);
+
     }
 
     public void displayAllEntries() {
@@ -159,7 +159,7 @@ public class Data {
         boolean vendorFound = false;
 
         for(int i = 0; i < transactionData.size(); i++){
-            if(vendor.equals(transactionData.get(i).getVendor())){
+            if(transactionData.get(i).getVendor().contains(vendor)){
                 System.out.println(transactionData.get(i).toString());
                 vendorFound = true;
             }

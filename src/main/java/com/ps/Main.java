@@ -14,14 +14,21 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 
+
+
 public class Main {
+
+     static boolean continueFlag = true;
+
     public static void main(String args[]){
 
         Scanner scanner = new Scanner(System.in);
         Data myLedger = new Data();
 
         buffAndFileReaderMethod(myLedger);
-        homeScreenMenu(scanner, myLedger);
+       while(true){
+           homeScreenMenu(scanner, myLedger);
+        }
 
     }
 
@@ -85,7 +92,6 @@ public class Main {
         String home_screen_input;
 
 
-
             System.out.println("Welcome to the Accounting Ledger Application! Please select an option!");
             System.out.println("\t(D)Add Deposit");
             System.out.println("\t(P)Make Payment(Debit)");
@@ -101,10 +107,13 @@ public class Main {
                         makePayment(scanner, myLedger);
                         break;
                     case ("L"):
+                        while(continueFlag == true){
                         ledgerScreen(scanner, myLedger);
+                        }
                         break;
                     case ("X"):
                         System.out.println("Closing application");
+                        scanner.close();
                         System.exit(0);
                     default:
                         System.out.println("Please enter a valid input HOME");
@@ -146,6 +155,7 @@ public class Main {
                     break;
                 case("H"):
                     System.out.println("Returning Home...");
+                    continueFlag = false;
                     return;
                 default:
                     System.out.println("Please enter a valid input");
